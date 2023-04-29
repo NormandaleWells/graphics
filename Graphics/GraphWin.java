@@ -19,6 +19,14 @@ public class GraphWin
     private JPanel panel;
     private boolean closed;
 
+    private int windowWidth;
+    private int windowHeight;
+
+    private double xOffset;
+    private double yOffset;
+    private double xScale;
+    private double yScale;
+
     private int lastX = 0;
     private int lastY = 0;
     private boolean hasPoint = false;
@@ -46,11 +54,6 @@ public class GraphWin
         specialKeys.put(KeyEvent.VK_F1, "F1");
     }
 
-    private Point screenXYtoPoint(int x, int y) {
-        // TODO: convert to user coordinate system
-        return new Point(x, y);
-    }
-
     // Exactly one of `code` or `c` must be non-zero.
     // If `code` is non-zero, that code must have an
     // entry i `specialKeys`.  If either of these
@@ -64,6 +67,9 @@ public class GraphWin
     }
 
     public GraphWin(String title, int width, int height) {
+
+        windowWidth = width;
+        windowHeight = height;
 
         frame = new JFrame();
         frame.setTitle(title);
@@ -183,6 +189,20 @@ public class GraphWin
     //
     // instance methods
 
+    public Point screenXYtoPoint(int x, int y) {
+        y = (windowHeight-1) - y;
+        double userX = x / xScale + xOffset;
+        double userY = y / yScale + yOffset;
+        return new Point(userX, userY);
+    }
+
+    public java.awt.Point pointXYtoScreen(Point pt) {
+        int screenX = (int)((pt.getX() - xOffset) * xScale);
+        int screenY = (int)((pt.getY() - yOffset) * yScale);
+        screenY = (windowHeight-1) - screenY;
+        return new java.awt.Point(screenX, screenY);
+    }
+
     public void setBackground(ColorRGB color) {
         panel.setBackground(color.getColor());
     }
@@ -244,5 +264,14 @@ public class GraphWin
             hasChar = false;
             return keyCodeToString(lastCode, lastChar);
         }
+    }
+
+    public void setCoords(double xmin, double ymin, double xmax, double ymax) {
+        double dx = xmax - xmin;
+        double dy = ymax - ymin;
+        xScale = windowWidth / dx;
+        yScale = windowHeight / dy;
+        xOffset = xmin;
+        yOffset = ymin;
     }
 }
