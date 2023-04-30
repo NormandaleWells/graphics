@@ -27,7 +27,7 @@ public class TestGraphcs1 {
             }
 
             String s = win.checkKey();
-            if (s != null) {
+            if (s != null && lastPt != null) {
                 switch (s) {
                     case "uparrow":
                         lastPt.move(0, 0.1);
