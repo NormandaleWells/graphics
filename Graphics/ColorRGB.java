@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class ColorRGB {
     
     private static HashMap<String, Color> colorNames;
-    private Color color;
+    private final Color color;
 
     static {
         colorNames = new HashMap<String, Color>();
