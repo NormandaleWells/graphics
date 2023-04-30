@@ -14,7 +14,7 @@ import Graphics.Line;
 public class TestLine {
     
     public static void main(String[] args) throws InterruptedException {
-        GraphWin win = new GraphWin("My Window", 600, 600);
+        GraphWin win = new GraphWin("Test Lines", 600, 600);
         win.setBackground(new ColorRGB("gray"));
 
         win.setCoords(0.1, 0.1, 1.2, 1.2);

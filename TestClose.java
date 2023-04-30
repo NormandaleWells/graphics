@@ -6,7 +6,7 @@ import Graphics.GraphWin;
 public class TestClose {
     
     public static void main(String[] args) throws InterruptedException {
-        GraphWin win = new GraphWin("My Window", 600, 600);
+        GraphWin win = new GraphWin("Test Close", 600, 600);
 
         while (!win.isClosed()) {
             String s = win.checkKey();

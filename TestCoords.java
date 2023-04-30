@@ -4,7 +4,7 @@ import Graphics.Point;
 public class TestCoords {
     
     public static void main(String[] args) throws InterruptedException {
-        GraphWin win = new GraphWin("My Window", 600, 600);
+        GraphWin win = new GraphWin("Test Coordinates", 600, 600);
 
         win.setCoords(-0.1, -0.1, 1.1, 1.1);
         while (!win.isClosed()) {
