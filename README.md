@@ -85,3 +85,5 @@ To be checked:
 - Should we call undraw() for all display list objects when the window closes?
 - Does Point support setFill()?
 - What does setWidth() do with non-lines?  Does it just affect the outline?
+- Should we use mouseClicked or mouseReleased()?  We currently get no input
+  if the mouse is moved while the button is pressed.
