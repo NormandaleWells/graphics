@@ -46,6 +46,16 @@ the java.awt.Color class, but also has a constructor
 for defining a color by name
 using the [X11 color names](https://en.wikipedia.org/wiki/X11_color_names).
 
+# Possible additions
+It may be useful to have a `moveTo()` function that moves an
+object to an absolute location.
+
+It may be useful to have a `Vector` class representing the
+difference between two points, and have a version of `move()`
+that takes a vector.  There would also be functions that add
+and subtract `Vector`s.  This would **not** be drawable, and
+therefore would not derive from GraphicsObject.
+
 # Known issues
 If the mouse is moved while the button is pressed,
 `getMouse()` and `checkMouse()` return nothing.
@@ -58,7 +68,10 @@ I need to research the full list supported by
 Zelle's library; I suspect this is built into
 TKinter.
 
+Redrawing an object does not reset the `win` variable
+
 Still unimplemented:
+- `update()`
 - `setWidth` (for any object type)
 - `Line.setArrow()`
 - `Circle`
@@ -71,3 +84,7 @@ Still unimplemented:
 To be checked:
 - Make sure the input functions work properly if the window is closed.
 - What do Circle and Oval do if the window mapping is anisotropic?
+- What does Zelle's code do if an object is drawn into another window?
+- Should we call undraw() for all display list objects when the window closes?
+- Does Point support setFill()?
+- What does setWidth() do with non-lines?  Does it just affect the outline?

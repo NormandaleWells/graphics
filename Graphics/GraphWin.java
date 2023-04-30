@@ -79,6 +79,10 @@ public class GraphWin
      * <p>
      * In order to display graphics in Java, we need to create a subclass of
      * <code>JPanel</code>, and override the <code>paintComponent</code> method.
+     * We're using <code>JPanel</code>'s double-buffer capability to support
+     * smooth animation by having <code>paintComponent()</code> draw into an
+     * off-screen bitmap which is then bit-bltted to the screen (or it may use
+     * screen-flipping; I'm not sure).
      * <p>
      * This class intentionally has package visibiilty, since some methods in
      * <code>GraphicsObject</code> need to add and remove items from the display
