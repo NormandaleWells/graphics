@@ -1,5 +1,7 @@
 package Graphics;
 
+import java.awt.Graphics;
+
 // This serves a dual purpose as both a geometric point
 // and a displayable graphics point.
 
@@ -30,15 +32,14 @@ public class Point extends GraphicsObject {
     }
 
     @Override
-    public void doDraw() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'doDraw'");
+    public void doDraw(Graphics g) {
+        java.awt.Point pt = win.pointXYtoScreen(this);
+        g.drawRect((int)pt.x, (int)pt.y, 1, 1);
     }
 
     @Override
     public void doMove() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'doMove'");
     }
 
     @Override

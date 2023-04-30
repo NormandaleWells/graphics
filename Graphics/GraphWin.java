@@ -1,6 +1,7 @@
 package Graphics;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -16,7 +17,7 @@ public class GraphWin
     implements MouseListener, KeyListener, WindowListener {
     
     private JFrame frame;
-    private JPanel panel;
+    private GraphicsPanel panel;
     private boolean closed;
 
     private int windowWidth;
@@ -54,6 +55,23 @@ public class GraphWin
         specialKeys.put(KeyEvent.VK_F1, "F1");
     }
 
+    // This class intentionally has package visibiilty.
+    class GraphicsPanel extends JPanel {
+
+        public GraphicsPanel() {
+            super(false);
+        }
+
+        public void paintComponent(Graphics g) {
+            // Redraw display list
+        }
+    }
+
+    // This method intentionally has package visibility.
+    GraphicsPanel getGraphicsPanel() {
+        return panel;
+    }
+
     // Exactly one of `code` or `c` must be non-zero.
     // If `code` is non-zero, that code must have an
     // entry i `specialKeys`.  If either of these
@@ -81,7 +99,7 @@ public class GraphWin
         frame.getContentPane().addKeyListener(this);
         frame.addWindowListener(this);
 
-        panel = new JPanel(false); // set to true later for double buffering
+        panel = new GraphicsPanel(); // set to true later for double buffering
         frame.getContentPane().add(panel);
         panel.setPreferredSize(new Dimension(width, height));
         frame.pack();

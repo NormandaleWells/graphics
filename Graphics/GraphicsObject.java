@@ -13,11 +13,13 @@
 
 package Graphics;
 
+import java.awt.Graphics;
+
 public abstract class GraphicsObject implements Cloneable {
 
     // `win` is non-null iff this object is currently drawn
     // in a window.
-    private GraphWin win = null;
+    protected GraphWin win = null;
 
     // Derived classes should override this as needed.
     public void setFill(ColorRGB color) {
@@ -46,14 +48,14 @@ public abstract class GraphicsObject implements Cloneable {
     // as necessary.
     // `doDraw()` is also used when traversing the display
     // list to redraw the screen.
-    public abstract void doDraw();
+    public abstract void doDraw(Graphics g);
     public abstract void doMove();
 
     public final void draw(GraphWin win) {
-        if (win != null) return; // throw exception?
+        if (this.win != null) return; // Throw an exception?
         this.win = win;
         // Add to display
-        doDraw();
+        doDraw(this.win.getGraphicsPanel().getGraphics());
     }
 
     public final void undraw() {
