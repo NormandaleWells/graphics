@@ -15,7 +15,5 @@ public class TestCoords {
                 System.out.printf("Screen: %d %d\n", (int)screen.getX(), (int)screen.getY());
             }
         }
-
-        System.out.println("Closed now.");
     }
 }
