@@ -34,12 +34,14 @@ public class Point extends GraphicsObject {
     @Override
     public void doDraw(Graphics g) {
         java.awt.Point pt = win.pointXYtoScreen(this);
+        g.setColor(color.getColor());
         g.drawRect((int)pt.x, (int)pt.y, 1, 1);
     }
 
     @Override
-    public void doMove() {
-        // TODO Auto-generated method stub
+    public void doMove(double dx, double dy) {
+        x += dx;
+        y += dy;
     }
 
     @Override

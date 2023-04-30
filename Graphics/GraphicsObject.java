@@ -49,17 +49,25 @@ public abstract class GraphicsObject implements Cloneable {
     // `doDraw()` is also used when traversing the display
     // list to redraw the screen.
     public abstract void doDraw(Graphics g);
-    public abstract void doMove();
 
     public final void draw(GraphWin win) {
         if (this.win != null) return; // Throw an exception?
         this.win = win;
-        // Add to display
-        doDraw(this.win.getGraphicsPanel().getGraphics());
+        GraphWin.GraphicsPanel panel = this.win.getGraphicsPanel();
+        panel.addObject(this);
+        doDraw(panel.getGraphics());
+    }
+
+    public abstract void doMove(double dx, double dy);
+
+    public final void move(double dx, double dy) {
+        doMove(dx, dy);
+        win.checkUpdate();
     }
 
     public final void undraw() {
         if (win == null) return;
-        // Remove this from the display list.
+        win.getGraphicsPanel().removeObject(this);
+        win.checkUpdate();
     }
 }

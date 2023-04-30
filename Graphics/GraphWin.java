@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -19,6 +20,8 @@ public class GraphWin
     private JFrame frame;
     private GraphicsPanel panel;
     private boolean closed;
+
+    private boolean autoFlush;
 
     private int windowWidth;
     private int windowHeight;
@@ -58,18 +61,49 @@ public class GraphWin
     // This class intentionally has package visibiilty.
     class GraphicsPanel extends JPanel {
 
+        private ArrayList<GraphicsObject> displayList;
+
         public GraphicsPanel() {
-            super(false);
+            super(true);
+            displayList = new ArrayList<>();
         }
 
+        @Override
         public void paintComponent(Graphics g) {
-            // Redraw display list
+            for (GraphicsObject obj : displayList) {
+                obj.doDraw(g);
+            }
+        }
+
+        public void addObject(GraphicsObject obj) {
+            displayList.add(obj);
+        }
+
+        public void removeObject(GraphicsObject obj) {
+            // We don't want to use indexOf() because we're
+            // really looking for this exact object rather
+            // than using .equals().
+            for (int i = 0; i < displayList.size(); i++) {
+                if (displayList.get(i) == obj) {
+                    displayList.remove(i);
+                    return;
+                }
+            }
         }
     }
 
     // This method intentionally has package visibility.
     GraphicsPanel getGraphicsPanel() {
         return panel;
+    }
+
+    JFrame getFrame() {
+        return frame;
+    }
+
+    void checkUpdate() {
+        if (autoFlush)
+            frame.repaint();
     }
 
     // Exactly one of `code` or `c` must be non-zero.
@@ -84,10 +118,11 @@ public class GraphWin
         return null;
     }
 
-    public GraphWin(String title, int width, int height) {
+    public GraphWin(String title, int width, int height, boolean autoFlush) {
 
         windowWidth = width;
         windowHeight = height;
+        this.autoFlush = autoFlush;
 
         frame = new JFrame();
         frame.setTitle(title);
@@ -99,7 +134,7 @@ public class GraphWin
         frame.getContentPane().addKeyListener(this);
         frame.addWindowListener(this);
 
-        panel = new GraphicsPanel(); // set to true later for double buffering
+        panel = new GraphicsPanel();
         frame.getContentPane().add(panel);
         panel.setPreferredSize(new Dimension(width, height));
         frame.pack();
@@ -110,6 +145,10 @@ public class GraphWin
         // The default coordinate system as (0,0) at the
         // top left corner.
         setCoords(0, height, width, 0);
+    }
+
+    public GraphWin(String title, int width, int height) {
+        this(title, width, height, true);
     }
 
     ///////////////////////////////////////////////////////
