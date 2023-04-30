@@ -41,9 +41,9 @@ public class GraphWin
     private int lastCode = 0;
     private boolean hasChar = false;
 
-    private HashMap<Integer,String> specialKeys;
+    private static final HashMap<Integer,String> specialKeys;
 
-    private void setUpSpecialKeys() {
+    static {
         specialKeys = new HashMap<>();
         specialKeys.put(KeyEvent.VK_LEFT, "leftarrow");
         specialKeys.put(KeyEvent.VK_RIGHT, "rightarrow");
@@ -88,8 +88,6 @@ public class GraphWin
 
         frame.setVisible(true);
         closed = false;
-
-        setUpSpecialKeys();
     }
 
     ///////////////////////////////////////////////////////
@@ -205,6 +203,10 @@ public class GraphWin
 
     public void setBackground(ColorRGB color) {
         panel.setBackground(color.getColor());
+    }
+
+    public void setBackground(String color) {
+        setBackground(new ColorRGB(color));
     }
 
     public void close() {
