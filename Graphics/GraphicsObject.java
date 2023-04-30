@@ -185,5 +185,6 @@ public abstract class GraphicsObject implements Cloneable {
         if (win == null) return;
         win.getGraphicsPanel().removeObject(this);
         win.checkUpdate();
+        win = null;
     }
 }
