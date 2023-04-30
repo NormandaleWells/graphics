@@ -51,3 +51,5 @@ Zelle's library.
 
 Many, many more special keys need to be added
 to the `specialKeys` list in `GraphWin`.
+
+`Line.setArrow()` is not supported.
