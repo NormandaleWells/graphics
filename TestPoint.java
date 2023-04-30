@@ -23,6 +23,7 @@ public class TestPoint {
                 if (lastPt != null)
                     lastPt.undraw();
                 lastPt = pt;
+                lastPt.setOutline("red");
                 lastPt.draw(win);
             }
 

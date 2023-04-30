@@ -23,6 +23,10 @@ public class Point extends GraphicsObject {
         this.color = other.color;
     }
 
+    public void setOutline(ColorRGB color) {
+        this.color = color;
+    }
+
     public double getX() {
         return x;
     }

@@ -31,6 +31,7 @@ public class TestLine {
                         lastLine.undraw();
                     lastLine = new Line(lastPt, pt);
                     lastPt = null;
+                    lastLine.setOutline("maroon");
                     lastLine.draw(win);
                 }
             }

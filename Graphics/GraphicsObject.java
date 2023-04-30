@@ -34,7 +34,7 @@ public abstract class GraphicsObject implements Cloneable {
     }
 
     public final void setOutline(String color) {
-        setFill(new ColorRGB(color));
+        setOutline(new ColorRGB(color));
     }
 
     // Derived classes should override this as needed.

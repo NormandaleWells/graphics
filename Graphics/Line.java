@@ -20,6 +20,10 @@ public class Line extends GraphicsObject {
         this.color = other.color;
     }
 
+    public void setOutline(ColorRGB color) {
+        this.color = color;
+    }
+
     public void setArrow() {
         // TODO: figure out how to support this
     }
