@@ -88,6 +88,10 @@ public class GraphWin
 
         frame.setVisible(true);
         closed = false;
+
+        // The default coordinate system as (0,0) at the
+        // top left corner.
+        setCoords(0, height, width, 0);
     }
 
     ///////////////////////////////////////////////////////
