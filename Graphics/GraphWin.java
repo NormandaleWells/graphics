@@ -14,6 +14,19 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Represents a window on the screen where graphical images may be drawn.
+ * <p>
+ * Creating a <code>GraphWin</code> should generally be the first step
+ * taken by any program using this library.  For example:
+ * <pre>
+ * {@code
+ *      GraphWin win = new GraphWin("My Window", 600, 600);
+ * }
+ * </pre>
+ * This will create a 600 pixel by 600 pixel window
+ */
+
 public class GraphWin
     implements MouseListener, KeyListener, WindowListener {
     
@@ -26,6 +39,9 @@ public class GraphWin
     private int windowWidth;
     private int windowHeight;
 
+    // A really good argument could be made for having these
+    // in the GraphicsPanel class instead of here, but since
+    // setCoords is a GraphWin method, they're here for now.
     private double xOffset;
     private double yOffset;
     private double xScale;
@@ -36,17 +52,17 @@ public class GraphWin
     private boolean hasPoint = false;
 
     // Invariant:
-    //      if hasChar is true, exactly one of lastChar or lastCode is non-zero.
+    //      if hasChar is true, exactly one of lastChar or lastCode
+    //      is non-zero.
     //
     // a non-zero lastChar indicates that a normal key was pressed
-    // a non-zero lastCode indicates that a special key (e.g. an arrow key)
-    //      was pressed
+    // a non-zero lastCode indicates that a special key (e.g. an
+    // arrow key) was pressed
     private char lastChar = 0;
     private int lastCode = 0;
     private boolean hasChar = false;
 
     private static final HashMap<Integer,String> specialKeys;
-
     static {
         specialKeys = new HashMap<>();
         specialKeys.put(KeyEvent.VK_LEFT, "leftarrow");
@@ -58,16 +74,38 @@ public class GraphWin
         specialKeys.put(KeyEvent.VK_F1, "F1");
     }
 
-    // This class intentionally has package visibiilty.
+    /**
+     * Supports drawing into a <code>GraphWin`.
+     * <p>
+     * In order to display graphics in Java, we need to create a subclass of
+     * <code>JPanel</code>, and override the <code>paintComponent</code> method.
+     * <p>
+     * This class intentionally has package visibiilty, since some methods in
+     * <code>GraphicsObject</code> need to add and remove items from the display
+     * list.
+     */
     class GraphicsPanel extends JPanel {
 
+        /**
+         * The list of objects to be redrawn on every call to
+         * <code>paintComponent</code>.
+         */
         private ArrayList<GraphicsObject> displayList;
 
+        /**
+         * Constructs a <code>>GraphicsPanel</code> with support for double
+         * buffering.
+         */
         public GraphicsPanel() {
             super(true);
             displayList = new ArrayList<>();
         }
 
+        /**
+         * Repaints the window by called <code>doDraw()</code> for every object
+         * in the display list.  Objects are drawn in the order in which they
+         * are added.
+         */
         @Override
         public void paintComponent(Graphics g) {
             for (GraphicsObject obj : displayList) {
@@ -75,14 +113,24 @@ public class GraphWin
             }
         }
 
+        /**
+         * Adds a new object to the display list.
+         * 
+         * @param obj       The <code>GraphicsObject</code>
+         *                  to be added.
+         */
         public void addObject(GraphicsObject obj) {
             displayList.add(obj);
         }
 
+        /**
+         * Removes the specified object from the display list.
+         * 
+         * @param obj
+         */
         public void removeObject(GraphicsObject obj) {
-            // We don't want to use indexOf() because we're
-            // really looking for this exact object rather
-            // than using .equals().
+            // We don't want to use indexOf() because we're really looking
+            // for this exact object rather than using .equals().
             for (int i = 0; i < displayList.size(); i++) {
                 if (displayList.get(i) == obj) {
                     displayList.remove(i);
@@ -92,24 +140,46 @@ public class GraphWin
         }
     }
 
+    /**
+     * Retrieves the <code>GraphicsPanel</code> object for this window.
+     * 
+     * @return      The <code>GraphicsPanel</code> for this window.
+     */
     // This method intentionally has package visibility.
     GraphicsPanel getGraphicsPanel() {
         return panel;
     }
 
-    JFrame getFrame() {
-        return frame;
-    }
-
+    /**
+     * Updates the screen if we are using autoflush mode.
+     * <p>
+     * This method intentionally has package visibility.
+     */
     void checkUpdate() {
         if (autoFlush)
             frame.repaint();
     }
 
-    // Exactly one of `code` or `c` must be non-zero.
-    // If `code` is non-zero, that code must have an
-    // entry i `specialKeys`.  If either of these
-    // conditions is not true, this will return null.
+    /**
+     * Returns a string representing the given key code or character.
+     * <p>
+     * Normal Unicode characters will return a one-character string.
+     * For special keyboard characters, a descriptive string (e.g.
+     * "uparrwo") is returned.
+     * <p>
+     * Exactly one of <code>code</code> or <code>c</code> must be non-zero.
+     * If <code>code</code> is non-zero, that code must have an entry in
+     * <code>specialKeys`. If either of these conditions is not met, this
+     * will return <code>null</code>.
+     * 
+     * @param code      The key code to translate (or 0 to use <code>c</code>
+     *                  instead).
+     * @param c         The character to return (or 0 to use <code>code</code>
+     *                  instead.)
+     * @return          A one-character string indicating that a "normal" key
+     *                  was pressed, or a string indicating the special key
+     *                  that was pressed.
+     */
     private String keyCodeToString(int code, char c) {
         if (c != 0)
             return ((Character)c).toString();
@@ -118,6 +188,16 @@ public class GraphWin
         return null;
     }
 
+    /**
+     * Creates a window for drawing into.
+     * 
+     * @param title         The window title.
+     * @param width         The width of the window in pixels.
+     * @param height        The height of the window in pixels.
+     * @param autoFlush     If <code>true</code>, the window is redrawn
+     *                      with every <code>move()</code> or
+     *                      <code>undraw()</code> operation.
+     */
     public GraphWin(String title, int width, int height, boolean autoFlush) {
 
         windowWidth = width;
@@ -147,6 +227,14 @@ public class GraphWin
         setCoords(0, height, width, 0);
     }
 
+    /**
+     * Creates a window for drawing into, with autoflush set
+     * to <code>true</code>.
+     * 
+     * @param title         The window title.
+     * @param width         The width of the window in pixels.
+     * @param height        The height of the window in pixels.
+     */
     public GraphWin(String title, int width, int height) {
         this(title, width, height, true);
     }
@@ -248,6 +336,16 @@ public class GraphWin
     //
     // instance methods
 
+    /**
+     * Translates a screen point to user coordinates.
+     * <p>
+     * The transform is set up by calling <code>setCoords</code>.
+     * 
+     * @param x         The x screen coordinate
+     * @param y         The y scrren coordinate
+     * @return          A <code>Point</code> object representing
+     *                  the corresponding point in user coordinates.
+     */
     public Point screenXYtoPoint(int x, int y) {
         y = (windowHeight-1) - y;
         double userX = x / xScale + xOffset;
@@ -255,6 +353,17 @@ public class GraphWin
         return new Point(userX, userY);
     }
 
+    /**
+     * Translates a user coordinate point to screen coordinates.
+     * <p>
+     * The transform is set up by calling <code>setCoords</code>.
+     * 
+     * @param pt        The Point object to convert to scrren
+     *                  coordinates.
+     * @return          A <code>java.awt.Point</code> object
+     *                  describing the corresponding screen
+     *                  coordinate point.
+     */
     public java.awt.Point pointXYtoScreen(Point pt) {
         int screenX = (int)((pt.getX() - xOffset) * xScale);
         int screenY = (int)((pt.getY() - yOffset) * yScale);
@@ -262,29 +371,65 @@ public class GraphWin
         return new java.awt.Point(screenX, screenY);
     }
 
+    /**
+     * Sets the background color of the window using a ColorRGB object.
+     * 
+     * @param color     The ColorRGB object containing the color to use.
+     */
     public void setBackground(ColorRGB color) {
         panel.setBackground(color.getColor());
     }
 
+    /**
+     * Sets the background color of the window using an X11 color name.
+     * 
+     * @param color     The X11 color name to use.
+     */
     public void setBackground(String color) {
         setBackground(new ColorRGB(color));
     }
 
+    /**
+     * Closes the window.
+     */
     public void close() {
         // See https://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         closed = true;
     }
 
+    /**
+     * Returns an indicator of whether the window is open.
+     * 
+     * @return          <code>true</code> if the window is open
+     *                  and <code>false</code> otherwise.
+     */
     public boolean isOpen() {
         return !closed;
     }
 
+    /**
+     * Returns an indicator of whether the window is closed.
+     * 
+     * @return          <code>true</code> if the window is closed
+     *                  and <code>false</code> otherwise.
+     */
     public boolean isClosed() {
         return closed;
     }
 
-    // TODO: See if there's a better way of doing this other than sleeping.
+    /**
+     * Waits for a mouse click and returns the user-coordinate point where
+     * the mouse was clicked.
+     * <p>
+     * I suspect the "proper" way to do this requires using threads, but since
+     * this not intended for production use, we should be okay here.
+     * 
+     * @return      A Point object representing the user coordinate point
+     *              where the mouse was clicked, or <code>null</code> if the
+     *              window is closed.
+     * @throws InterruptedException     Thrown if the program is interrupted.
+     */
     public Point getMouse() throws InterruptedException {
         while (!hasPoint) {
             Thread.sleep(1);
@@ -294,6 +439,21 @@ public class GraphWin
         return screenXYtoPoint(lastX, lastY);
     }
 
+    /**
+     * Returns the most recent user-coordinate point clicked, or
+     * <code>null</code> if no click has occurred since the last
+     * call to <code>getMouse()</code> or <code>checkMouse</code>.
+     * <p>
+     * I suspect the "proper" way to do this requires using threads,
+     * but since this not intended for production use, we should be
+     * okay here.
+     * 
+     * @return           A Point object representing the most recent
+     *                  point clicked, or <code>null</code> if no click
+     *                  has happened since the last call to either
+     *                  <code>getMouse()</code> or <code>checkMouse</code>.
+     * @throws InterruptedException     Thrown if the program is interrupted.
+     */
     public Point checkMouse() throws InterruptedException {
         // Minor kludge: since we're running this all in a
         // single thread, we need to provide some time for
@@ -307,6 +467,20 @@ public class GraphWin
         }
     }
 
+    /**
+     * Waits for a key press and returns a <code>String</code> representing
+     * the key that was pressed.
+     * <p>
+     * Normal Unicode characters are returned as a single-character
+     * <code>String</code>.  Special keys (for example, arrow keys) are
+     * returned as a descriptive <code>String</code>, such as "uparrow"
+     * for the up arrow.
+     * 
+     * @return              A <code>String</code> representing the last
+     *                      key pressed, or <code>null</code> if the
+     *                      window was closed.
+     * @throws InterruptedException     Thrown if the program is interrupted.
+     */
     public String getKey() throws InterruptedException {
         while (!hasChar) {
             Thread.sleep(1);
@@ -316,6 +490,21 @@ public class GraphWin
         return keyCodeToString(lastCode, lastChar);
     }
 
+    /**
+     * Returns the most recent key pressed, or <code>null</code> if no key
+     * press has occurred since the last call to <code>getKey()</code> or
+     * <code>checkKey</code>.
+     * <p>
+     * I suspect the "proper" way to do this requires using threads,
+     * but since this not intended for production use, we should be
+     * okay here.
+     * 
+     * @return           A <code>String</code> representing the last
+     *                  key pressed, or <code>null</code> if no key was
+     *                  pressed since the last call to either
+     *                  <code>getKey()</code> or <code>checkKey</code>.
+     * @throws InterruptedException     Thrown if the program is interrupted.
+     */
     public String checkKey() throws InterruptedException {
         // Minor kludge: since we're running this all in a
         // single thread, we need to provide some time for
@@ -329,6 +518,29 @@ public class GraphWin
         }
     }
 
+    /**
+     * Sets up the coordiantes for the window.
+     * <p>
+     * The point <code>(xmin,ymin)</code> is mappeed to the lower-left corner
+     * of the window, and the point <code>(xmax,ymax)</code> is mapped to the
+     * upper-right corner.
+     * <p>
+     * For example, this call to <code>setCoords()</code>:
+     * 
+     *      <code>win.setCoords(-0.1, -0.1, 1.1, 1.1)</code>
+     * 
+     * will set up a window that provides a 1.0x1.0 area with a 0.1 margin
+     * all around.
+     * 
+     * @param xmin      The x coordinate of the point to be mapped to the
+     *                  lower-left corner of the window.
+     * @param ymin      The y coordinate of the point to be mapped to the
+     *                  lower-left corner of the window.
+     * @param xmax      The x coordinate of the point to be mapped to the
+     *                  upper-right corner of the window.
+     * @param ymax      The y coordinate of the point to be mapped to the
+     *                  upper-right corner of the window.
+     */
     public void setCoords(double xmin, double ymin, double xmax, double ymax) {
         double dx = xmax - xmin;
         double dy = ymax - ymin;

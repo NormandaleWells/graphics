@@ -4,10 +4,10 @@
 //
 // Every derived class must override doDraw() and doMove().
 //
-// `clone()` requires a cast to the proper type, which is
-// rather annoying.  Therefore, every derived class should
-// have a copy constructor.  However, `clone()` is still
-// useful in cases where one may have a collection of
+// Java's `Object.clone()` requires a cast to the proper type,
+// which is rather annoying.  Therefore, every derived class
+// should have a copy constructor.  However, `clone()` is
+// still useful in cases where one may have a collection of
 // `GraphicsObject`s that need to be cloned.
 //
 

@@ -16,7 +16,7 @@ let me know and I'll fix it.
 
 # License
 [Dr. Zelle's Python version](http://mcsp.wartburg.edu/zelle/python)
-s licensed under the terms of the GPL,
+is licensed under the terms of the GPL,
 but I prefer the MIT license for my projects.
 It is not clear to me from reading the GPL whether a derivative
 work like this is also required to be GPL-licensed.
@@ -29,9 +29,12 @@ I'm using Java 17 for development,
 but I'm not knowingly using any features of Java
 that are new in Java 17.
 
+This library is for educational purposes only;
+it is **not** intended for production use!
+
 # Implementation Notes
 Since this is intended for use with novice programmers,
-I kept it single-threaded.
+I'm keeping it single-threaded.
 This means there is some potentially nasty code
 in the `checkMouse()`, `getMouse()`, `checkKey()`, and `getKey()`
 functions that would be made less awkward - and
@@ -40,7 +43,7 @@ threads.
 
 For colors, I'm using my own ColorRGB class which wraps
 the java.awt.Color class, but also has a constructor
-for defining a color by name,
+for defining a color by name
 using the [X11 color names](https://en.wikipedia.org/wiki/X11_color_names).
 
 # Known issues
@@ -51,5 +54,20 @@ Zelle's library.
 
 Many, many more special keys need to be added
 to the `specialKeys` list in `GraphWin`.
+I need to research the full list supported by
+Zelle's library; I suspect this is built into
+TKinter.
 
-`Line.setArrow()` is not supported.
+Still unimplemented:
+- `setWidth` (for any object type)
+- `Line.setArrow()`
+- `Circle`
+- `Rectangle`
+- `Oval`
+- `Polygon`
+- `Text`
+- `Images`
+
+To be checked:
+- Make sure the input functions work properly if the window is closed.
+- What do Circle and Oval do if the window mapping is anisotropic?
