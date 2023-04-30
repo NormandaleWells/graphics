@@ -80,7 +80,6 @@ Still unimplemented:
 - `Images`
 
 To be checked:
-- Make sure the input functions work properly if the window is closed.
 - What do Circle and Oval do if the window mapping is anisotropic?
 - What does Zelle's code do if an object is drawn into another window?
 - Should we call undraw() for all display list objects when the window closes?
