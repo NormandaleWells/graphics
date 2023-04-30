@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"Graphics","l":"ColorRGB"},{"p":"Graphics","l":"GraphicsObject"},{"p":"Graphics","l":"GraphWin"},{"p":"Graphics","l":"Line"},{"p":"Graphics","l":"Point"}];updateSearchResults();
