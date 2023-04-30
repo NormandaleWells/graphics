@@ -435,9 +435,11 @@ public class GraphWin
      * @throws InterruptedException     Thrown if the program is interrupted.
      */
     public Point getMouse() throws InterruptedException {
-        while (!hasPoint) {
+        while (!hasPoint && !closed) {
             Thread.sleep(1);
         }
+
+        if (closed) return null;
 
         hasPoint = false;
         return screenXYtoPoint(lastX, lastY);
@@ -463,7 +465,7 @@ public class GraphWin
         // single thread, we need to provide some time for
         // the event handling to kick in.
         Thread.sleep(0);
-        if (!hasPoint) {
+        if (!hasPoint || closed) {
             return null;
         } else {
             hasPoint = false;
@@ -486,9 +488,11 @@ public class GraphWin
      * @throws InterruptedException     Thrown if the program is interrupted.
      */
     public String getKey() throws InterruptedException {
-        while (!hasChar) {
+        while (!hasChar && !closed) {
             Thread.sleep(1);
         }
+
+        if (closed) return null;
 
         hasChar = false;
         return keyCodeToString(lastCode, lastChar);
@@ -514,7 +518,7 @@ public class GraphWin
         // single thread, we need to provide some time for
         // the event handling to kick in.
         Thread.sleep(0);
-        if (!hasChar) {
+        if (!hasChar || closed) {
             return null;
         } else {
             hasChar = false;
