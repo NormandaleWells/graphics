@@ -122,7 +122,7 @@ public abstract class GraphicsObject implements Cloneable {
      * @param g         The <code>graphics</code> object to draw
      *                  into.
      */
-    public abstract void doDraw(Graphics g);
+    protected abstract void doDraw(Graphics g);
 
     /**
      * Draw the object.
@@ -156,7 +156,7 @@ public abstract class GraphicsObject implements Cloneable {
      * @param dx        The x distance to move.
      * @param dy        The y distance to move.
      */
-    public abstract void doMove(double dx, double dy);
+    protected abstract void doMove(double dx, double dy);
 
     /**
      * Move the object.
