@@ -47,6 +47,11 @@ for defining a color by name
 using the [X11 color names](https://en.wikipedia.org/wiki/X11_color_names).
 
 # Possible additions
+I'd rather not make any additions to Zelle's API
+since I'd like to maintain as much compatibility as possible
+between this version and Zelle's original.
+But these few are tempting.
+
 It may be useful to have a `moveTo()` function that moves an
 object to an absolute location.
 
