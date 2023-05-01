@@ -74,7 +74,6 @@ Still unimplemented:
 - `update()`
 - `setWidth` (for any object type)
 - `Line.setArrow()`
-- `Circle`
 - `Rectangle`
 - `Oval`
 - `Polygon`
