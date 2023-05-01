@@ -10,7 +10,7 @@ import java.util.HashMap;
  * ColorRGB is a wrapper around the java.awt.color class.
  * It allows a ColorRGB to be created given an X11 color
  * name.
- * 
+ * <p>
  * All functions which accept a color are overloaded to take
  * either explicit RGB values or a <code>String</code> that
  * specifies an X11 color.  A list of the supported X11
