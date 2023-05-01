@@ -6,7 +6,7 @@ import java.awt.Graphics;
 // and a displayable graphics point.
 
 /**
- * Point is a drawable point object.
+ * <code>Point</code> is a drawable point object.
  * <p>
  * This class serves two purposes; it is both a drawable
  * object, and is also used extensively throughout the

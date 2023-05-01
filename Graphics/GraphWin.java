@@ -376,6 +376,30 @@ public class GraphWin
     }
 
     /**
+     * Translates an x distance in user coordinates to a
+     * distance in screen coordinates.
+     * 
+     * @param dx        The user coordinate distance
+     * @return          The corresponding screen coorindate
+     *                  distance.
+     */
+    public double xDistToScreen(double dx) {
+        return (int)(dx * xScale);
+    }
+
+    /**
+     * Translates a y distance in user coordinates to a
+     * distance in screen coordinates.
+     * 
+     * @param dy        The user coordinate distance
+     * @return          The corresponding screen coorindate
+     *                  distance.
+     */
+    public double yDistToScreen(double dy) {
+        return (int)(dy * yScale);
+    }
+
+    /**
      * Sets the background color of the window using a ColorRGB object.
      * 
      * @param color     The ColorRGB object containing the color to use.

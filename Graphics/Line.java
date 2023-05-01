@@ -11,11 +11,11 @@ public class Line extends GraphicsObject {
     private ColorRGB color;
 
     /**
-     * Initializes a new Line object given two points.
+     * Initializes a new <code>Line</code> object given two points.
      * <p>
-     * The Point objects are not stored directly; they are
-     * copied instead.  The original objects may be changed
-     * without affecting the <code>Line</code>.
+     * The <code>Point</code> objects are not stored directly;
+     * they are copied instead.  The original objects may be
+     * changed without affecting the <code>Line</code>.
      * 
      * @param p1        The first endpoint
      * @param p2        The other endpoint

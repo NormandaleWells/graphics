@@ -68,6 +68,8 @@ I need to research the full list supported by
 Zelle's library; I suspect this is built into
 TKinter.
 
+GraphWin.setBackground() has stopped working.
+
 Still unimplemented:
 - `update()`
 - `setWidth` (for any object type)
@@ -87,3 +89,4 @@ To be checked:
 - What does setWidth() do with non-lines?  Does it just affect the outline?
 - Should we use mouseClicked or mouseReleased()?  We currently get no input
   if the mouse is moved while the button is pressed.
+- Can the fill color be removed by calling setFill(null)?
