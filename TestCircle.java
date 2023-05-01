@@ -9,7 +9,7 @@ public class TestCircle {
         GraphWin win = new GraphWin("Test Point", 600, 600);
         win.setBackground(new ColorRGB("green"));
 
-        win.setCoords(0.1, 0.1, 1.2, 1.2);
+        win.setCoords(-0.1, -0.1, 1.1, 1.1);
         Circle lastCircle = null;
 
         while (!win.isClosed()) {
