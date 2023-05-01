@@ -60,7 +60,7 @@ therefore would not derive from GraphicsObject.
 If the mouse is moved while the button is pressed,
 `getMouse()` and `checkMouse()` return nothing.
 I'll fix this after I have a chance to see what
-Zelle's library.
+Zelle's library does.
 
 Many, many more special keys need to be added
 to the `specialKeys` list in `GraphWin`.
