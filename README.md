@@ -134,7 +134,9 @@ Still unimplemented:
 - `Images`
 
 To be checked:
-- What do Circle and Oval do if the window mapping is anisotropic?
+- What does Circle do if the window mapping is anisotropic?  Does it
+  become an oval (note the lower-case "o")?  If it remains a circle,
+  what is the radius?
 - What does Zelle's code do if an object is drawn into a second window?
 - Should we call undraw() for all display list objects when the window closes?
 - Does Point support setFill()?
