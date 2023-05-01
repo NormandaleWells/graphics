@@ -13,6 +13,54 @@ So I figured I'd try my hand at it.
 I'm trying to retain the same behavior as Zelle's library.
 If the behavior of this libary differs from that of Zelle's,
 let me know and I'll fix it.
+The goal is to make it easy to translates graphics-related
+Python code using graphics.py to the equivalent Java code
+using this package.
+
+For example, the sample program from Zelle's documentation:
+```
+from graphics import *
+
+def main():
+    win = GraphWin("My Circle", 100, 100)
+    c = Circle(Point(50,50), 10)
+    c.draw(win)
+    win.getMouse() # Pause to view result
+    win.close()    # Close window when done
+
+main()
+```
+becomes
+```
+import Graphics.*;
+
+public class GraphicsSample {
+    public static void main(String[] args) throws InterruptedException {
+        GraphWin win = new GraphWin("My Circle", 100, 100);
+        Circle c = new Circle(new Point(50, 50), 10);
+        c.draw(win);
+        win.getMouse(); // Pause to view result
+        win.close();    // Close window when done
+    }
+}
+```
+For the most part, it's a matter of adding type declarations
+and the `new` keyword where necessary (along with the usual
+Java syntax differences like semicolons and curly braces).
+
+The one wart is the requirement to mark `main()` as throwing
+InterruptedException.
+I'm still thinking about the best way to handle that.
+It would (IMO) be rude to eat the exception
+within all the input methods,
+so for now I'm going to live with it this way.
+Besides, any decent IDE will detect the problem
+and suggest you fix it by adding the `throws` declaration.
+
+(The real fix, I suppose, is doing input "properly" using
+threads instead of calling `Thread.sleep()` as needed
+to give keyboard/mouse processing a chance to happen.
+Maybe someday.)
 
 # License
 [Dr. Zelle's Python version](http://mcsp.wartburg.edu/zelle/python)
@@ -87,7 +135,7 @@ Still unimplemented:
 
 To be checked:
 - What do Circle and Oval do if the window mapping is anisotropic?
-- What does Zelle's code do if an object is drawn into another window?
+- What does Zelle's code do if an object is drawn into a second window?
 - Should we call undraw() for all display list objects when the window closes?
 - Does Point support setFill()?
 - What does setWidth() do with non-lines?  Does it just affect the outline?
