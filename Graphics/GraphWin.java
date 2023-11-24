@@ -146,18 +146,17 @@ public class GraphWin
 
     /**
      * Retrieves the <code>GraphicsPanel</code> object for this window.
+     * <p>
+     * This method intentionally has package visibility.
      * 
      * @return      The <code>GraphicsPanel</code> for this window.
      */
-    // This method intentionally has package visibility.
     GraphicsPanel getGraphicsPanel() {
         return panel;
     }
 
     /**
      * Updates the screen if we are using autoflush mode.
-     * <p>
-     * This method intentionally has package visibility.
      */
     void checkUpdate() {
         if (autoFlush)
