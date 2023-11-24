@@ -127,7 +127,7 @@ public abstract class GraphicsObject implements Cloneable {
     /**
      * Draw the object.
      * <p>
-     * The object is also added to a list of objects (the displayh list)
+     * The object is also added to a list of objects (the display list)
      * that are redrawn whenever the window is redrawn.
      * <p>
      * Derived classes cannot override this function.
