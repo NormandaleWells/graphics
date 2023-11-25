@@ -94,6 +94,21 @@ the java.awt.Color class, but also has a constructor
 for defining a color by name
 using the [X11 color names](https://en.wikipedia.org/wiki/X11_color_names).
 
+For fonts, I'm making the following mapping of the font names
+available to Text.setFace() and the available fonts on Windows:
+
+Face name | Windows | Mac
+--- | --- | ---
+helvetica | Arial | Helvetica
+courier | Courier New | Courier
+times roman | Times New Roman | Times
+arial | Arial | Helvetica
+
+Yes, I'm mapping Helvetica to Arial on Windows.  So sue me.
+I've been told that Swiss is very similar to Helvetica,
+but it does not appear to be available by default on all
+installations of Windows.
+
 # Possible additions
 I'd rather not make any additions to Zelle's API
 since I'd like to maintain as much compatibility as possible
