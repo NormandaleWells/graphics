@@ -95,7 +95,7 @@ for defining a color by name
 using the [X11 color names](https://en.wikipedia.org/wiki/X11_color_names).
 
 For fonts, I'm making the following mapping of the font names
-available to Text.setFace() and the available fonts on Windows:
+available to `Text.setFace()` and the available fonts on Windows:
 
 Face name | Windows | Mac
 --- | --- | ---
@@ -105,7 +105,7 @@ times roman | Times New Roman | Times
 arial | Arial | Helvetica
 
 Yes, I'm mapping Helvetica to Arial on Windows.  So sue me.
-I've been told that Swiss is very similar to Helvetica,
+I've been told that Swiss is a better substitute for Helvetica,
 but it does not appear to be available by default on all
 installations of Windows.
 
