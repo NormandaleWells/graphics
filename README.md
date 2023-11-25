@@ -3,7 +3,7 @@ Java version of John Zelle's graphics.py.
 
 # Background
 For his textbook "Python Programming: An Introduction to Computer Science"
-(Franklin, Beedle & Associations), ISBN 978-1590282755)
+(Franklin, Beedle & Associations), ISBN 978-1590282755
 John Zelle created a simple graphics library.
 Since Java is used by so many CS2 courses,
 I thought by now someone would have translated this library
@@ -130,7 +130,7 @@ Still unimplemented:
 - `Text`
 - `Images`
 
-To be checked:
+To be checked in Zelle's library:
 - What does Circle do if the window mapping is anisotropic?  Does it
   become an oval (note the lower-case "o")?  If it remains a circle,
   what is the radius?
