@@ -112,6 +112,7 @@ public class GraphWin
          */
         @Override
         public void paintComponent(Graphics g) {
+            super.paintComponent(g);
             for (GraphicsObject obj : displayList) {
                 obj.doDraw(g);
             }
@@ -221,7 +222,8 @@ public class GraphWin
         frame.getContentPane().add(panel);
         panel.setPreferredSize(new Dimension(width, height));
         frame.pack();
-
+        panel.setOpaque(true);
+    
         frame.setVisible(true);
         closed = false;
 

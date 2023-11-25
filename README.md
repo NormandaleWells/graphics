@@ -121,8 +121,6 @@ I need to research the full list supported by
 Zelle's library; I suspect this is built into
 TKinter.
 
-GraphWin.setBackground() has stopped working.
-
 Still unimplemented:
 - `update()`
 - `setWidth` (for any object type)
