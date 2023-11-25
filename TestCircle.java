@@ -6,7 +6,7 @@ import Graphics.Point;
 public class TestCircle {
     
     public static void main(String[] args) throws InterruptedException {
-        GraphWin win = new GraphWin("Test Point", 600, 600);
+        GraphWin win = new GraphWin("Test Circle", 600, 600);
         win.setBackground(new ColorRGB("green"));
 
         win.setCoords(-0.1, -0.1, 1.1, 1.1);
