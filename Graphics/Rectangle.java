@@ -3,7 +3,7 @@ package Graphics;
 import java.awt.Graphics;
 
 /**
- * Rrectangle is a drawable rectanble object.
+ * Rectangle is a drawable rectangle object.
  */
 public class Rectangle extends GraphicsObject {
     
