@@ -1,18 +1,20 @@
 package Graphics;
 
 import java.awt.Graphics;
+
 /**
  * Circle is a drawable circle object.
  */
 public class Circle extends GraphicsObject {
 
     private Point center;
-    double radius;
+    private double radius;
     private ColorRGB color;
     private ColorRGB fillColor;
 
     /**
-     * Initializes a new <code>Circle</code> object given two points.
+     * Initializes a new <code>Circle</code> object given a
+     * center and a radius.
      * <p>
      * The Point object is not stored directly; it is
      * copied instead.  The original object may be changed
