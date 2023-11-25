@@ -82,6 +82,13 @@ public class Point extends GraphicsObject {
         return new Point(this);
     }
 
+    /**
+     * Computes the midpoint of two given points.
+     * 
+     * @param p1    - the first point
+     * @param p2    - the second point
+     * @return      - the midpoint of the two points
+     */
     public static Point midPoint(Point p1, Point p2) {
         double x = (p1.x + p2.x) / 2.0;
         double y = (p1.y + p2.y) / 2.0;
