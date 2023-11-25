@@ -127,7 +127,6 @@ Still unimplemented:
 - `update()`
 - `setWidth` (for any object type)
 - `Line.setArrow()`
-- `Rectangle`
 - `Oval`
 - `Polygon`
 - `Text`
@@ -144,3 +143,5 @@ To be checked:
 - Should we use mouseClicked or mouseReleased()?  We currently get no input
   if the mouse is moved while the button is pressed.
 - Can the fill color be removed by calling setFill(null)?
+- Does Zelle's library require the points defining a Rectangle to be
+  the lower-left and upper-right corners?
