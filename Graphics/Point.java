@@ -81,4 +81,10 @@ public class Point extends GraphicsObject {
     public Object clone() {
         return new Point(this);
     }
+
+    public static Point midPoint(Point p1, Point p2) {
+        double x = (p1.x + p2.x) / 2.0;
+        double y = (p1.y + p2.y) / 2.0;
+        return new Point(x, y);
+    }
 }
