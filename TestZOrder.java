@@ -7,7 +7,7 @@ public class TestZOrder {
     
     public static void main(String[] args) throws InterruptedException {
         GraphWin win = new GraphWin("Test Point", 600, 600);
-        win.setBackground(new ColorRGB("green"));
+        win.setBackground(new ColorRGB("gray"));
 
         win.setCoords(-0.1, -0.1, 1.1, 1.1);
 
