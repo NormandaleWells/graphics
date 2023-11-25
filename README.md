@@ -125,8 +125,6 @@ Still unimplemented:
 - `update()`
 - `setWidth` (for any object type)
 - `Line.setArrow()`
-- `Oval`
-- `Polygon`
 - `Text`
 - `Images`
 
@@ -143,3 +141,4 @@ To be checked in Zelle's library:
 - Can the fill color be removed by calling setFill(null)?
 - Does Zelle's library require the points defining a Rectangle to be
   the lower-left and upper-right corners?
+- What does Zelle's library do with non-simple polygons?
