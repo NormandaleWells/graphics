@@ -74,6 +74,11 @@ public class Polygon extends GraphicsObject{
         this.fillColor = color;
     }
 
+    /**
+     * Return clones of the points that define this polygon.
+     * 
+     * @return  The points defining the Polygon.
+     */
     public Point[] getPoints() {
         Point[] pts = new Point[this.pts.length];
         for (int i = 0; i < this.pts.length; i++) {
