@@ -15,6 +15,8 @@ import java.util.HashMap;
  * either explicit RGB values or a <code>String</code> that
  * specifies an X11 color.  A list of the supported X11
  * colors can be found <a href="https://www.w3schools.com/colors/colors_x11.asp">here</a>.
+ * <p>
+ * ColorRGB objects are immutable.
  */
 public class ColorRGB {
     
